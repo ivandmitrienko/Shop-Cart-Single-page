@@ -17,9 +17,10 @@ export default class App extends PureComponent {
     return (
       <div className={style.App}>
        <Routes>
-         <Route path='/' element={<Layout/>} />
+         <Route path='/' element={<Layout/>}>
          <Route index element={<ProductList/>} />
          <Route path='/ProductDescription' element={<Product/>} />
+         </Route>
        </Routes>
 
       </div>

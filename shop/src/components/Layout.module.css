@@ -1,0 +1,76 @@
+.Layout{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.text{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+input{
+    height: 32px;
+    font-size: 18px;
+    width: 100%;
+    margin-bottom: 25px;
+    background-color: rgb(7, 56, 97);
+    border: none;
+    outline: none;
+    padding: 5px;
+    color: white;
+}
+
+.addProduct{
+    background-color: rgb(7, 56, 97);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 12px;
+}
+
+.quantity{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 15%;
+    margin-bottom: 10px;
+}
+
+.quantity span{
+    font-size: 18px;
+    color: white;
+}
+
+.quantity button{
+    background-color: rgb(98, 113, 126);
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    color: white;
+}
+
+.addToList button{
+    height: 30px;
+    background-color: rgb(98, 113, 126);
+    margin-top: 10px;
+}
