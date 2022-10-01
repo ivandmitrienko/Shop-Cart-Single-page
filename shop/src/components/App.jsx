@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react';
-
+import { Routes, Route } from "react-router-dom";
+// import ProductList from './ProductList';
+import Layout from './Layout';
+import Product from './Product';
 import style from './App.module.css';
 
 export default class App extends PureComponent {
@@ -13,9 +16,11 @@ export default class App extends PureComponent {
   render() {
     return (
       <div className={style.App}>
-        {/* <Routes>
-
-        </Routes> */}
+       <Routes>
+         <Route path='/' element={<Layout/>} />
+         {/* <Route index element={<ProductList/>} /> */}
+         <Route path='/ProductDescription' element={<Product/>} />
+       </Routes>
 
       </div>
     )
