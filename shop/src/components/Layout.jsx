@@ -7,7 +7,8 @@ export default class Layout extends PureComponent {
         return (
             <>
                 <div>
-                   <ProductList/>
+                   sgsgsgsgs
+                   <NavLink to='/ProductDescription'>go</NavLink>
                 </div>
                 <Outlet />
             </>
