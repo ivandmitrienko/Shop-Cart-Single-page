@@ -46,6 +46,8 @@ input{
     border-radius: 50%;
     text-align: center;
     padding-top: 12px;
+    cursor: pointer;
+    margin-bottom: 15px;
 }
 
 .quantity{
@@ -73,4 +75,6 @@ input{
     height: 30px;
     background-color: rgb(98, 113, 126);
     margin-top: 10px;
+    color: white;
+    font-size: 18px;
 }
