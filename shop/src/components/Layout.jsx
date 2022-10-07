@@ -15,8 +15,6 @@ class Layout extends PureComponent {
         this.state = {
             displayIcons: false,
             count: 0,
-            productName: React.createRef(),
-            productPrice: React.createRef(),
         }
     }
 
@@ -33,7 +31,14 @@ class Layout extends PureComponent {
     }
 
     addProduct = () => {
-        this.props.addName(this.state.productName.current.value);
+        this.props.addName(
+            this.productName.value, 
+            this.productPrice.value,
+            this.state.count
+        );
+        this.productName.value='';
+        this.productPrice.value='';
+        
     }
 
     render() {
@@ -44,8 +49,8 @@ class Layout extends PureComponent {
                         Add product to your cart list
                     </h1>
                     <div className={style.text}>
-                        <input type="text" placeholder='Product name' ref={this.state.productName} />
-                        <input type="text" placeholder='Product price' ref={this.state.productPrice} />
+                        <input type="text" placeholder='Product name' ref={(input)=>{this.productName=input}} />
+                        <input type="text" placeholder='Product price' ref={(input)=>{this.productPrice=input}} />
                     </div>
                     <div className={style.quantity}>
                         <button onClick={this.setMoreCount}>+</button>
@@ -69,8 +74,8 @@ class Layout extends PureComponent {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-   addName:(productName)=>{
-       dispatch({type: 'ADD_PRODUCT', product: { nameOfProduct: productName}})
+   addName:(productName, price, count)=>{
+       dispatch({type: 'ADD_PRODUCT', product: { nameOfProduct: productName, nameOfPrice:price, quantity:count}})
    }
 })
 
