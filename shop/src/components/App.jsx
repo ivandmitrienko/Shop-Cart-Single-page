@@ -22,7 +22,6 @@ export default class App extends PureComponent {
          <Route path='/ProductDescription' element={<Product/>} />
          </Route>
        </Routes>
-
       </div>
     )
   }
