@@ -3,11 +3,20 @@ import { images } from '../images.js';
 import style from './ShopIcons.module.css';
 
 export default class ShopIcons extends PureComponent {
+    constructor(props) {
+      super(props)
+    
+      this.state = {
+         first:1,
+      }
+    }
     render() {
         return (
             <div className={style.icons}>
-                {images.map((image) => <img src={image} key={image} alt=''/>)}
+                {images.map((image) => <img src={image} key={image} alt='' onClick={()=>this.props.setImage(image)} />)}
             </div>
         )
     }
 }
+
+

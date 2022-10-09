@@ -2,24 +2,27 @@ import React, { PureComponent } from 'react';
 import { Outlet } from "react-router-dom";
 import { BsFillCartPlusFill } from 'react-icons/bs';
 import ShopIcons from './ShopIcons';
+import Quantity from './Quantity';
 import style from './Layout.module.css';
 import { connect } from 'react-redux';
-// import store from './store';
-
 
 class Layout extends PureComponent {
 
     constructor(props) {
         super(props)
-
         this.state = {
             displayIcons: false,
             count: 0,
+            image: null,
         }
     }
 
+
+
     showDisplayIcons = () => {
-        this.setState({ displayIcons: !this.state.displayIcons })
+        if (this.productName.value && this.productPrice.value && this.state.count) {
+            this.setState({ displayIcons: !this.state.displayIcons })
+        }
     };
 
     setMoreCount = () => {
@@ -31,14 +34,21 @@ class Layout extends PureComponent {
     }
 
     addProduct = () => {
-        this.props.addName(
-            this.productName.value, 
-            this.productPrice.value,
-            this.state.count
-        );
-        this.productName.value='';
-        this.productPrice.value='';
-        
+        if (this.state.image) {
+            this.props.addName(
+                this.productName.value,
+                this.productPrice.value,
+                this.state.count,
+                this.state.image,
+            );
+            this.productName.value = '';
+            this.productPrice.value = '';
+            this.setState({ count: 0, image: null })
+        }
+    }
+
+    setImage = (picture) => {
+        this.setState({ image: picture, displayIcons: !this.state.displayIcons })
     }
 
     render() {
@@ -49,22 +59,23 @@ class Layout extends PureComponent {
                         Add product to your cart list
                     </h1>
                     <div className={style.text}>
-                        <input type="text" placeholder='Product name' ref={(input)=>{this.productName=input}} />
-                        <input type="text" placeholder='Product price' ref={(input)=>{this.productPrice=input}} />
+                        <input type="text" placeholder='Product name' ref={(input) => { this.productName = input }} />
+                        <input type="text" placeholder='Product price' ref={(input) => { this.productPrice = input }} />
                     </div>
-                    <div className={style.quantity}>
-                        <button onClick={this.setMoreCount}>+</button>
-                        <span>{this.state.count}</span>
-                        <button onClick={this.setLessCount}>-</button>
-                    </div>
-                    <div className={style.addProduct}>
+                    <Quantity
+                        setMoreCount={this.setMoreCount}
+                        setLessCount={this.setLessCount}
+                    >
+                    <span>{this.state.count}</span>
+                    </Quantity>
+                    <div className={style.addicons}>
                         <BsFillCartPlusFill size={40} color='rgb(173, 173, 173)' onClick={this.showDisplayIcons} />
                     </div>
                     <>
-                        {this.state.displayIcons && <ShopIcons />}
+                        {this.state.displayIcons && <ShopIcons setImage={this.setImage} />}
                     </>
                     <div className={style.addToList}>
-                        <button onClick={this.addProduct}>Add to List</button>
+                        <button style={{ cursor: `${this.state.image ? 'pointer' : 'not-allowed'}` }} onClick={this.addProduct}>Add to List</button>
                     </div>
                 </div>
                 <Outlet />
@@ -74,9 +85,9 @@ class Layout extends PureComponent {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-   addName:(productName, price, count)=>{
-       dispatch({type: 'ADD_PRODUCT', product: { nameOfProduct: productName, nameOfPrice:price, quantity:count}})
-   }
+    addName: (productName, price, count, picture) => {
+        dispatch({ type: 'ADD_PRODUCT', product: { nameOfProduct: productName, nameOfPrice: price, quantity: count, image: picture } })
+    }
 })
 
-export default connect (null,mapDispatchToProps)(Layout);
+export default connect(null, mapDispatchToProps)(Layout);
