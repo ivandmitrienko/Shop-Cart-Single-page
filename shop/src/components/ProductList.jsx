@@ -8,7 +8,7 @@ class ProductList extends PureComponent {
   render() {
     return (
       <div className={style.productList} onClick={this.getState}>
-        {this.props.products.map((product)=><Items id={Date.now()} product={product}/>)}
+        {this.props.products.map((product)=><Items id={Date.now()} key={product.image} product={product}/>)}
       </div>
     )
   }

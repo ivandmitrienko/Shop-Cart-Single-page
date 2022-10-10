@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import style from './Layout.module.css';
+import Quantity from './Quantity';
 
 export default class Items extends PureComponent {
     render() {
@@ -10,6 +11,9 @@ export default class Items extends PureComponent {
                     <span>
                         {this.props.product.nameOfProduct}
                     </span>
+                </div>
+                <div>
+                    <Quantity />
                 </div>
             </div>
         )

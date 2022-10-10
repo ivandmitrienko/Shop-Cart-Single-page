@@ -12,38 +12,26 @@ class Layout extends PureComponent {
         super(props)
         this.state = {
             displayIcons: false,
-            count: 0,
             image: null,
         }
     }
 
-
-
     showDisplayIcons = () => {
-        if (this.productName.value && this.productPrice.value && this.state.count) {
+        if (this.productName.value && this.productPrice.value) {
             this.setState({ displayIcons: !this.state.displayIcons })
         }
     };
-
-    setMoreCount = () => {
-        this.setState({ count: this.state.count + 1 })
-    };
-
-    setLessCount = () => {
-        if (this.state.count) { this.setState({ count: this.state.count - 1 }) }
-    }
 
     addProduct = () => {
         if (this.state.image) {
             this.props.addName(
                 this.productName.value,
                 this.productPrice.value,
-                this.state.count,
                 this.state.image,
             );
             this.productName.value = '';
             this.productPrice.value = '';
-            this.setState({ count: 0, image: null })
+            this.setState({ image: null })
         }
     }
 
@@ -62,12 +50,7 @@ class Layout extends PureComponent {
                         <input type="text" placeholder='Product name' ref={(input) => { this.productName = input }} />
                         <input type="text" placeholder='Product price' ref={(input) => { this.productPrice = input }} />
                     </div>
-                    <Quantity
-                        setMoreCount={this.setMoreCount}
-                        setLessCount={this.setLessCount}
-                    >
-                    <span>{this.state.count}</span>
-                    </Quantity>
+                    <Quantity count={this.state.count}/>
                     <div className={style.addicons}>
                         <BsFillCartPlusFill size={40} color='rgb(173, 173, 173)' onClick={this.showDisplayIcons} />
                     </div>
@@ -85,8 +68,8 @@ class Layout extends PureComponent {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addName: (productName, price, count, picture) => {
-        dispatch({ type: 'ADD_PRODUCT', product: { nameOfProduct: productName, nameOfPrice: price, quantity: count, image: picture } })
+    addName: (productName, price, picture) => {
+        dispatch({ type: 'ADD_PRODUCT', product: { nameOfProduct: productName, nameOfPrice: price, image: picture } })
     }
 })
 
