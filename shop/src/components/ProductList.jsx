@@ -7,7 +7,7 @@ class ProductList extends PureComponent {
 
   render() {
     return (
-      <div className={style.productList} onClick={this.getState}>
+      <div className={style.productList} >
         {this.props.products.map((product)=><Items id={Date.now()} key={product.image} product={product}/>)}
       </div>
     )
@@ -16,7 +16,7 @@ class ProductList extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products
+    products: state.products.products
   };
 };
 
