@@ -1,23 +1,49 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import style from './Layout.module.css';
 
-export default class Quantity extends PureComponent {
+class Quantity extends PureComponent {
+
+    // constructor(props) {
+    //   super(props)
+    
+    //   this.state = {
+    //      count: this.props.count,
+    //   }
+    // }
     
     setMoreCount = () => {
-        this.setState({ count: this.state.count + 1 })
+        this.props.addCount();
     };
 
     setLessCount = () => {
-        if (this.state.count!==1) { this.setState({ count: this.state.count - 1 }) }
+        if (this.props.count!==1) { this.props.reduceCount() }
     };
 
     render() {
         return (
             <div className={style.quantity}>
                 <button onClick={this.setMoreCount}>+</button>
-                <span>1</span>
+                <span>{this.props.count}</span>
                 <button onClick={this.setLessCount}>-</button>
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      count: state.count.price
+    };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+    addCount: () => {
+        dispatch({ type: 'ADD_PRICE'})
+    },
+    reduceCount: () => {
+        dispatch({ type: 'REDUCE_PRICE'})
+    },
+})
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Quantity);

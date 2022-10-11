@@ -50,7 +50,7 @@ class Layout extends PureComponent {
                         <input type="text" placeholder='Product name' ref={(input) => { this.productName = input }} />
                         <input type="text" placeholder='Product price' ref={(input) => { this.productPrice = input }} />
                     </div>
-                    <Quantity count={this.state.count}/>
+                    <Quantity />
                     <div className={style.addicons}>
                         <BsFillCartPlusFill size={40} color='rgb(173, 173, 173)' onClick={this.showDisplayIcons} />
                     </div>
