@@ -8,8 +8,8 @@ export function count(state = defaultState, action) {
             return { ...state, count: state.count++ };
         case 'REDUCE_COUNT':
             if (state.count !== 1) {
-                return { ...state, count: state.count-- };
-            }
+                return { ...state, count: state.count-- }
+            };
         default:
             return state;
 

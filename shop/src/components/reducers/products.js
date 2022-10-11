@@ -1,6 +1,5 @@
 const defaultState = {
     products: [],
-    count:1,
 }
 
 export function products(state = defaultState, action) {
@@ -9,6 +8,5 @@ export function products(state = defaultState, action) {
             return { ...state, products: [...state.products, action.product] };
         default:
             return state;
-
     }
 }
