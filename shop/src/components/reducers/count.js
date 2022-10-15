@@ -10,7 +10,6 @@ export function count(state = defaultState, action) {
             return { ...state, count: state.count - 1 };
         case 'RESTART_COUNT':
             return { ...state, count: defaultState.count };
-
         default:
             return state;
     }
