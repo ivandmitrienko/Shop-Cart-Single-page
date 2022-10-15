@@ -13,7 +13,9 @@ export default class Items extends PureComponent {
                     </span>
                 </div>
                 <div>
-                    <Quantity />
+                    <Quantity >
+                        {this.props.product.count}
+                    </Quantity>
                 </div>
             </div>
         )

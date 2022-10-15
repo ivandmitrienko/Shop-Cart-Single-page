@@ -17,8 +17,24 @@ class Layout extends PureComponent {
     }
 
     showDisplayIcons = () => {
-        if (this.productName.value && this.productPrice.value) {
-            this.setState({ displayIcons: !this.state.displayIcons })
+        if (isNaN(this.productPrice.value)) {
+            alert('price is number !!!');
+            return;
+        }
+        if (this.productName.value) {
+            this.setState({
+                displayIcons: !this.state.displayIcons,
+            });
+        }
+    };
+
+    setMoreCount = () => {
+        this.props.addCount();
+    };
+
+    setLessCount = () => {
+        if (this.props.count !== 1) {
+            this.props.reduceCount();
         }
     };
 
@@ -28,15 +44,21 @@ class Layout extends PureComponent {
                 this.productName.value,
                 this.productPrice.value,
                 this.state.image,
+                this.props.count,
             );
             this.productName.value = '';
             this.productPrice.value = '';
-            this.setState({ image: null })
+            this.setState({
+                image: null,
+            });
         }
     }
 
     setImage = (picture) => {
-        this.setState({ image: picture, displayIcons: !this.state.displayIcons })
+        this.setState({
+            image: picture,
+            displayIcons: !this.state.displayIcons,
+        })
     }
 
     render() {
@@ -50,7 +72,12 @@ class Layout extends PureComponent {
                         <input type="text" placeholder='Product name' ref={(input) => { this.productName = input }} />
                         <input type="text" placeholder='Product price' ref={(input) => { this.productPrice = input }} />
                     </div>
-                    <Quantity />
+                    <Quantity
+                        setMoreCount={this.setMoreCount}
+                        setLessCount ={this.setLessCount}
+                    >
+                        {this.props.count}
+                    </ Quantity>
                     <div className={style.addicons}>
                         <BsFillCartPlusFill size={40} color='rgb(173, 173, 173)' onClick={this.showDisplayIcons} />
                     </div>
@@ -68,9 +95,32 @@ class Layout extends PureComponent {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addName: (productName, price, picture) => {
-        dispatch({ type: 'ADD_PRODUCT', product: { nameOfProduct: productName, nameOfPrice: price, image: picture } })
-    }
-})
+    addName: (productName, price, picture, count) => {
+        dispatch({
+            type: 'ADD_PRODUCT',
+            product: {
+                nameOfProduct: productName,
+                nameOfPrice: price,
+                image: picture,
+                count: count
+            }
+        });
+        dispatch({
+            type: 'RESTART_COUNT',
+        });
+    },
+    addCount: () => {
+        dispatch({ type: 'ADD_PRICE' })
+    },
+    reduceCount: () => {
+        dispatch({ type: 'REDUCE_PRICE' })
+    },
+});
 
-export default connect(null, mapDispatchToProps)(Layout);
+const mapStateToProps = (state) => {
+    return {
+        count: state.count.count,
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

@@ -3,13 +3,7 @@ import { images } from '../images.js';
 import style from './ShopIcons.module.css';
 
 export default class ShopIcons extends PureComponent {
-    constructor(props) {
-      super(props)
     
-      this.state = {
-         first:1,
-      }
-    }
     render() {
         return (
             <div className={style.icons}>
