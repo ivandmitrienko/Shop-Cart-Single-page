@@ -1,17 +1,9 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import style from './Layout.module.css';
 import Quantity from './Quantity';
 
-class Items extends PureComponent {
-
-    // constructor(props) {
-    //   super(props)
-    
-    //   this.state = {
-    //      count:this.props.product.count,
-    //   }
-    // }
+export default class Items extends PureComponent {
 
     // setMoreCount=()=>{
     //     this.setState({count:this.state.count + 1})
@@ -45,14 +37,14 @@ class Items extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        count: state.count.count,
-    };
-};
+// const mapStateToProps = (state) => {
+//     return {
+//         product: state.products.products,
+//     };
+// };
 
-const mapDispatchToProps = (dispatch) => ({
+// const mapDispatchToProps = (dispatch) => ({
 
-});
+// });
 
-export default connect(mapStateToProps, null)(Items);
+// export default connect(mapStateToProps, null)(Items);
