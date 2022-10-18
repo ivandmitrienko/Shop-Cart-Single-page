@@ -8,7 +8,18 @@ class ProductList extends PureComponent {
   render() {
     return (
       <div className={style.productList} >
-        {this.props.products.map((product)=><Items id={Date.now()} key={product.image} product={product}/>)}
+        {this.props.products.map((product, index) => <Items
+          id={Date.now()}
+          key={index}
+          product={product}
+          index={index}
+        />)}
+        {this.props.products.length ?
+          <div className={style.totalPrice}>
+            Total: {this.props.products.reduce((acc, curr) => { return acc + (curr.nameOfPrice * curr.count) }, 0)}$
+          </div> :
+          null
+        }
       </div>
     )
   }

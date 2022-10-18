@@ -5,6 +5,7 @@ import ShopIcons from './ShopIcons';
 import Quantity from './Quantity';
 import style from './Layout.module.css';
 import { connect } from 'react-redux';
+import * as consts from './actions/actions';
 
 class Layout extends PureComponent {
 
@@ -97,7 +98,7 @@ class Layout extends PureComponent {
 const mapDispatchToProps = (dispatch) => ({
     addName: (productName, price, picture, count) => {
         dispatch({
-            type: 'ADD_PRODUCT',
+            type: consts.ADD_PRODUCT,
             product: {
                 nameOfProduct: productName,
                 nameOfPrice: price,
@@ -106,14 +107,14 @@ const mapDispatchToProps = (dispatch) => ({
             }
         });
         dispatch({
-            type: 'RESTART_COUNT',
+            type: consts.RESTART_COUNT,
         });
     },
     addCount: () => {
-        dispatch({ type: 'ADD_PRICE' })
+        dispatch({ type: consts.ADD_PRICE })
     },
     reduceCount: () => {
-        dispatch({ type: 'REDUCE_PRICE' })
+        dispatch({ type: consts.REDUCE_PRICE })
     },
 });
 

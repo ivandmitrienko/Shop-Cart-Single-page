@@ -54,7 +54,7 @@ input{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 15%;
+    width: 90px;
     margin-bottom: 10px;
 }
 
@@ -89,8 +89,80 @@ input{
     height: 100px;
     width: 100%;
     background-color: rgb(7, 56, 97);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 0 20px;
+    color: white;
+    margin-bottom: 10px;
 }
 
 .product img{
     height: 50%;
+}
+
+.countOfProduct{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.closeAndDiscribe{
+    cursor: pointer;
+    display: flex;
+    align-self: start;
+    position: relative;
+    
+}
+
+.totalPrice{
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.moreInformation{
+    position: absolute;
+    top: 0;
+    right: 30px;
+}
+
+button{
+    cursor: pointer;
+}
+
+.itemOfProduct{
+    width: 40%;
+    height: 100%;
+    color: #ffff;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.itemOfProduct span{
+    margin-bottom: 10px;
+}
+
+.itemOfProduct__img{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.itemOfProduct__img img{
+    width: 100%;
+}
+
+button a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
 }
