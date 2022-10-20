@@ -40,14 +40,19 @@ input{
 }
 
 .addicons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(7, 56, 97);
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    text-align: center;
-    padding-top: 14px;
     cursor: pointer;
     margin-bottom: 15px;
+}
+
+.addicons img{
+    width: 60%;
 }
 
 .quantity{

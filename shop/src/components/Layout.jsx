@@ -38,7 +38,6 @@ class Layout extends PureComponent {
     };
 
     addProduct = () => {
-        // console.log(this.isFormValid());
         if (this.isFormValid()) {
             this.props.addName(
                 this.productName.value,
@@ -52,6 +51,14 @@ class Layout extends PureComponent {
                 image: null,
             });
         }
+    }
+
+    startImage = () => {
+        this.setState({
+            image:null,
+            displayIcons: !this.state.displayIcons,
+
+        })
     }
 
     setImage = (picture) => {
@@ -79,7 +86,19 @@ class Layout extends PureComponent {
                         {this.props.count}
                     </ Quantity>
                     <div className={style.addicons}>
-                        <BsFillCartPlusFill size={40} color='rgb(173, 173, 173)' onClick={this.showDisplayIcons} />
+                        {this.state.image ?
+                            <img
+                                src={this.state.image}
+                                alt=""
+                                onClick={this.startImage}
+                            />
+                            :
+                            <BsFillCartPlusFill
+                                size={40}
+                                color='rgb(173, 173, 173)'
+                                onClick={this.showDisplayIcons}
+                            />
+                        }
                     </div>
                     <>
                         {this.state.displayIcons && <ShopIcons setImage={this.setImage} />}
