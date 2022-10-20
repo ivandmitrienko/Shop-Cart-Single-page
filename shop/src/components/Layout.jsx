@@ -18,7 +18,9 @@ class Layout extends PureComponent {
     }
 
     isFormValid() {
-        return this.productName.value && this.productPrice.value && this.state.image;
+        return this.productName.value &&
+            isFinite(this.productPrice.value) &&
+            this.state.image;
     }
 
     showDisplayIcons = () => {
@@ -32,7 +34,9 @@ class Layout extends PureComponent {
     };
 
     setLessCount = () => {
-        if (this.props.count !== 1) {
+        if (this.props.count === 1) {
+            return;
+        } else {
             this.props.reduceCount();
         }
     };
@@ -55,17 +59,21 @@ class Layout extends PureComponent {
 
     startImage = () => {
         this.setState({
-            image:null,
+            image: null,
             displayIcons: !this.state.displayIcons,
 
         })
     }
 
     setImage = (picture) => {
-        this.setState({
-            image: picture,
-            displayIcons: !this.state.displayIcons,
-        })
+        if (this.productName.value && isFinite(this.productPrice.value)) {
+            this.setState({
+                image: picture,
+                displayIcons: !this.state.displayIcons,
+            })
+        } else {
+            alert('Price is Number! Check all strings, please')
+        }
     }
 
     render() {
@@ -104,7 +112,10 @@ class Layout extends PureComponent {
                         {this.state.displayIcons && <ShopIcons setImage={this.setImage} />}
                     </>
                     <div className={style.addToList}>
-                        <button style={{ cursor: `${this.state.image ? 'pointer' : 'not-allowed'}` }} onClick={this.addProduct}>Add to List</button>
+                        <button
+                            style={{ cursor: `${this.state.image ? 'pointer' : 'not-allowed'}` }}
+                            onClick={this.addProduct}>Add to List
+                        </button>
                     </div>
                 </div>
                 <Outlet />
