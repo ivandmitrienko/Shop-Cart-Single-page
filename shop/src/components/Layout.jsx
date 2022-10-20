@@ -17,17 +17,15 @@ class Layout extends PureComponent {
         }
     }
 
+    isFormValid() {
+        return this.productName.value && this.productPrice.value && this.state.image;
+    }
+
     showDisplayIcons = () => {
-        if (isNaN(this.productPrice.value)) {
-            alert('price is number !!!');
-            return;
-        }
-        if (this.productName.value) {
-            this.setState({
-                displayIcons: !this.state.displayIcons,
-            });
-        }
-    };
+        this.setState({
+            displayIcons: !this.state.displayIcons,
+        })
+    }
 
     setMoreCount = () => {
         this.props.addCount();
@@ -40,7 +38,8 @@ class Layout extends PureComponent {
     };
 
     addProduct = () => {
-        if (this.state.image) {
+        // console.log(this.isFormValid());
+        if (this.isFormValid()) {
             this.props.addName(
                 this.productName.value,
                 this.productPrice.value,
@@ -75,7 +74,7 @@ class Layout extends PureComponent {
                     </div>
                     <Quantity
                         setMoreCount={this.setMoreCount}
-                        setLessCount ={this.setLessCount}
+                        setLessCount={this.setLessCount}
                     >
                         {this.props.count}
                     </ Quantity>
