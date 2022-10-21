@@ -14,7 +14,9 @@ class Items extends PureComponent {
     }
 
     setLessCount = () => {
-        if (this.props.product.count !== 1) {
+        if (this.props.product.count === 1) {
+            return;    
+        } else {
             this.props.reduceCountofProduct(this.props.index);
         }
     };
@@ -47,8 +49,8 @@ class Items extends PureComponent {
                     <AiFillCloseCircle size={25} onClick={this.deleteProduct} />
                     <div className={style.moreInformation}>
                         <NavLink
-                            to='./ProductDescription'
-                            state={{product:this.props.product}}
+                            to={`/ProductDescription/${this.props.product.id}`}
+                            // state={{product:this.props.product}}
                             style={{ color: 'white' }}
                         >
                             <TbFileDescription size={25} />

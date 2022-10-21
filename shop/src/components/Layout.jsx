@@ -48,6 +48,7 @@ class Layout extends PureComponent {
                 this.productPrice.value,
                 this.state.image,
                 this.props.count,
+                Date.now(),
             );
             this.productName.value = '';
             this.productPrice.value = '';
@@ -125,14 +126,15 @@ class Layout extends PureComponent {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addName: (productName, price, picture, count) => {
+    addName: (productName, price, picture, count, id) => {
         dispatch({
             type: consts.ADD_PRODUCT,
             product: {
                 nameOfProduct: productName,
                 nameOfPrice: price,
                 image: picture,
-                count: count
+                count: count,
+                id: id,
             }
         });
         dispatch({

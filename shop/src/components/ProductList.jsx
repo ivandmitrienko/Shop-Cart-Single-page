@@ -9,7 +9,6 @@ class ProductList extends PureComponent {
     return (
       <div className={style.productList} >
         {this.props.products.map((product, index) => <Items
-          id={Date.now()}
           key={index}
           product={product}
           index={index}

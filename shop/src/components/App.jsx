@@ -13,7 +13,7 @@ export default class App extends PureComponent {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<ProductList />} />
-            <Route path='/ProductDescription' element={<Product />} />
+            <Route path='/ProductDescription/:id' element={<Product />} />
           </Route>
         </Routes>
       </div>
