@@ -6,7 +6,7 @@ import { NavLink, useParams } from "react-router-dom";
 export default function Product() {
 
   const {id} = useParams();
-  const product = useSelector(state=>state.products.products.find((product)=>product.id===id));
+  const product = useSelector(state=>{return state.products.products.find((product)=>product.id===id)});
   // const product = state.find((product)=>product.id===id)
   // const location = useLocation();
   // const { product } = location.state;
