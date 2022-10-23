@@ -149,21 +149,20 @@ button{
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 }
 
 .itemOfProduct span{
     margin-bottom: 10px;
 }
 
-.itemOfProduct__img{
+.itemOfImg{
     width: 50px;
     height: 50px;
     margin-bottom: 10px;
-}
+} 
 
-.itemOfProduct__img img{
-    width: 100%;
+.itemOfImg img{
+  width: 100%;
 }
 
 button a{
